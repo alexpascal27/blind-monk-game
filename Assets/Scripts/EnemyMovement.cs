@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyMovement : MonoBehaviour
 {
     private int lifePoints;
+    int initalLifePoints;
+    public EnemySpawn m_enemySpawnScript;
 
     private Vector2 velocity;
     private Rigidbody2D rb;
-    public GameObject light;
-    public Light lightNew;
 
+    public GameObject lightObject;
+    private Light2D light;
     bool lightOn = false;
     float lightTimer = 0f;
     [Range(0f, 1f)][SerializeField] private float timerLength;
+    [Range(0f, 5f)][SerializeField] private float lifePointsScaling;
+
     [Range(0.01f, 0.5f)][SerializeField] private float scaleDecreaseFactor;
     [Range(0.1f, 2f)][SerializeField] private float velocityScaleFactor;
 
     void Start() 
     {
        rb = GetComponent<Rigidbody2D>();
-       light.GetComponent<Light2D>().color = Color.green;
-       light.SetActive(false);
+       light = lightObject.GetComponent<Light2D>();
+       light.enabled = false;
+       light.color = Color.green;
 
        // Assign life points based on scale
         lifePoints = (int)(gameObject.transform.localScale.x) * 10;
-        lifePoints = (int)(lifePoints / 1.5);
+        lifePoints = (int)(lifePoints * lifePointsScaling);
+        initalLifePoints = lifePoints;
     }
 
     // Update is called once per frame
@@ -37,17 +44,46 @@ public class EnemyMovement : MonoBehaviour
         // Ran out of life points, so die
         if(lifePoints==0)
         {
+            m_enemySpawnScript.DoTheSpawn();
             Destroy(gameObject);
         }
 
         if(lightOn)
         {
+            SetColourAccordingToLife();
+            
+
             lightTimer -= Time.smoothDeltaTime;
             if(lightTimer<=0)
             {
                 lightOn = false;
                 lightTimer = 0f;
-                light.SetActive(false);
+                light.enabled = false;
+            }
+        }
+    }
+
+    private void SetColourAccordingToLife()
+    {
+        // 3/3 green
+        // 2/3 yellow
+        // 1/3 red
+        // 0/3 black
+
+        if(lifePoints<=0)
+        {
+            light.color = Color.black;
+        }
+        else
+        {
+            float thirdValue = initalLifePoints / lifePoints;
+            if(lifePoints > 0 && lifePoints <= thirdValue)
+            {
+                light.color = Color.red;
+            }
+            else if(lifePoints > thirdValue && lifePoints < 2*thirdValue)
+            {
+                light.color = Color.yellow;
             }
         }
     }
@@ -106,6 +142,6 @@ public class EnemyMovement : MonoBehaviour
     {
         lightOn = true;
         lightTimer = timerLength;
-        light.SetActive(true);
+        light.enabled = true;;
     }
 }

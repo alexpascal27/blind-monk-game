@@ -24,16 +24,10 @@ public class EnemySpawn : MonoBehaviour
     // Instace of GameObject
     public GameObject enemyPrefab;
 
-    // Start is called before the first frame update
-    void Update()
+    public void DoTheSpawn()
     {
-        if(Input.GetKeyDown("r"))
-        {
-            Debug.Log("pressed R");
-            SetSpawn();
-            SpawnAtRandom(GetAvailableSlots());
-        }
-        
+        SetSpawn();
+        SpawnAtRandom(GetAvailableSlots());
     }
 
     void Start()
@@ -51,7 +45,6 @@ public class EnemySpawn : MonoBehaviour
 
         // Max scale - scale * 5
         rb2D.velocity = direction.normalized * (5 * Mathf.Max((maxSize-gameObject.transform.localScale.x), 0.2f));
-        Debug.Log(rb2D.velocity.magnitude);
     }
 
     void SetSpawn()
@@ -65,11 +58,9 @@ public class EnemySpawn : MonoBehaviour
         maxSpawnY = screenBounds.y;
         minSpawnX = -screenBounds.x;
         maxSpawnX = screenBounds.x;
-        Debug.Log("Screen size: (" + screenBounds.x + ", " + screenBounds.y + ")");
 
         float ySpan = maxSpawnY - minSpawnY;
         float xSpan = maxSpawnX - minSpawnX;
-        Debug.Log("Spawn Span: (" + xSpan + ", " + ySpan + ")");
 
         float availableSpawnArea = xSpan * ySpan;
 
@@ -96,7 +87,7 @@ public class EnemySpawn : MonoBehaviour
     void SpawnAtRandom(List<float[]> availableSlots)
     {
         int availableSlotsNumber = availableSlots.Count;
-        int enemiesToSpawn = numberOfEnemies - 1;
+        int enemiesToSpawn = (int)Random.Range(1f, numberOfEnemies+0.5f);
 
         while(enemiesToSpawn > 0 && availableSlotsNumber>0)
         {
@@ -120,7 +111,6 @@ public class EnemySpawn : MonoBehaviour
         enemy.transform.position = new Vector2(x, y);
         float randomSize = Random.Range(minSize, maxSize);
         enemy.transform.localScale = new Vector2(randomSize, randomSize);
-        Debug.Log("Spawned an enemy at: (" + x + ", " + y + ")");
     }
 
     private Vector2 RandomVector(float min, float max)
