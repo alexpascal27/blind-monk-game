@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 244705848}
   - component: {fileID: 244705849}
   - component: {fileID: 244705850}
+  - component: {fileID: 244705851}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -257,7 +258,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 244705842}
-        m_MethodName: onLanding
+        m_MethodName: OnLanding
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -382,6 +383,8 @@ Transform:
   - {fileID: 385419363}
   - {fileID: 1409020741}
   - {fileID: 55384547}
+  - {fileID: 2143091507}
+  - {fileID: 2093697411}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -442,6 +445,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25534263, y: 0.17033404}
   m_EdgeRadius: 0
+--- !u!114 &244705851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244705841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedbbd789ec99f618a8334b7a90ca19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalFirePoint: {fileID: 2143091507}
+  verticalFirePoint: {fileID: 2093697411}
 --- !u!1 &385419362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1397,36 @@ Transform:
   m_Father: {fileID: 924881268}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!1 &2093697410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093697411}
+  m_Layer: 8
+  m_Name: VerticalFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093697411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093697410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 244705847}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2138622916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,3 +1584,33 @@ MonoBehaviour:
   maxSize: 2
   numberOfEnemies: 2
   enemyPrefab: {fileID: 2138622916}
+--- !u!1 &2143091506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2143091507}
+  m_Layer: 8
+  m_Name: HorizontalFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2143091507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143091506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 0.008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 244705847}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
