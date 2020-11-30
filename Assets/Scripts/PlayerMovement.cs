@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         _horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(_horizontalMove));
         verticalMove = Input.GetAxisRaw("Vertical");
@@ -47,5 +48,5 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Jumping", false);
         jump = false;
     }
-    
+
 }

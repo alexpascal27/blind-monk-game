@@ -21,7 +21,6 @@ public class Q : MonoBehaviour
 
     void Start()
     {
-        horizontalLine.SetActive(false);
         verticalLine.SetActive(false);
     }
     
@@ -59,8 +58,6 @@ public class Q : MonoBehaviour
     {
         Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
-        Debug.Log("Mouse Position:(" + mousePosition.x + " , " + mousePosition.y + ")" + " | Player Position:(" + gameObject.transform.position.x + " , " + gameObject.transform.position.y + ")");
-        
         // Compare the player and mouse position
         // If mouse position is above player position
         if (mousePosition.y > (gameObject.transform.position.y + 1))
