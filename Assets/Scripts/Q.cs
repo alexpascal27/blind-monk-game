@@ -13,6 +13,9 @@ public class Q : MonoBehaviour
     public GameObject horizontalLine;
     public GameObject verticalLine;
 
+    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
+    private float nextFireTime = 0f;
+    
     public float animationTime;
     private float animationTimeLeft = 0f;
     private bool shooting = false;
@@ -27,12 +30,7 @@ public class Q : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Q"))
-        {
-            if (horizontal) HorizontalShoot();
-            else VerticalShoot();
-
-        }
+        CooldownHandling();
 
         RotateLineAccordingToMouse();
         
@@ -115,5 +113,27 @@ public class Q : MonoBehaviour
         rotatedVerticalFirePoint.Rotate(0f, 0f, 90f, Space.Self);
         Instantiate(bulletPrefab, verticalFirePoint.position, rotatedVerticalFirePoint.rotation);
         rotatedVerticalFirePoint.Rotate(0f, 0f, -90f, Space.Self);
+    }
+
+    private void CooldownHandling()
+    {
+        // If our ability is currently not on cooldown
+        if (nextFireTime < Time.time)
+        {
+            // If we pressed Q
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                // Start cooldown
+                nextFireTime = Time.time + cooldownTime;
+                
+                if (horizontal) HorizontalShoot();
+                else VerticalShoot();
+            }
+        }
+        // If on cooldown
+        else
+        {
+            
+        }
     }
 }

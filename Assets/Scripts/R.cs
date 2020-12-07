@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class R : MonoBehaviour
 {
@@ -60,6 +61,15 @@ public class R : MonoBehaviour
                 }
                 
             }
+        }
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // If colliding with an enemy and r is not on cooldown
+        if (other.gameObject.tag == "Enemy" && nextFireTime < Time.time)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

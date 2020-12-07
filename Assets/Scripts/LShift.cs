@@ -6,13 +6,13 @@ public class LShift : MonoBehaviour
 {
     public Camera camera;
 
+    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
+    private float nextFireTime = 0f;
+    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            MovePlayerToMousePosition();
-        }
+        CooldownHandling();
     }
     
     private void MovePlayerToMousePosition()
@@ -42,5 +42,26 @@ public class LShift : MonoBehaviour
 
         // Flash to mouse position
         gameObject.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+    }
+    
+    private void CooldownHandling()
+    {
+        // If our ability is currently not on cooldown
+        if (nextFireTime < Time.time)
+        {
+            // If we pressed LShift
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                // Start cooldown
+                nextFireTime = Time.time + cooldownTime;
+                
+                MovePlayerToMousePosition();
+            }
+        }
+        // If on cooldown
+        else
+        {
+            
+        }
     }
 }
