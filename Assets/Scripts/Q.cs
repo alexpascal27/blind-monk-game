@@ -112,40 +112,40 @@ public class Q : MonoBehaviour
         if (shootingAngle > 25 && shootingAngle <= 75)
         {
             animationName = "CrouchKick";
-            firePoint.position = camera.ScreenToWorldPoint(new Vector3(0.15f, 0.18f, 0f));
+            firePoint.localPosition = camera.ScreenToWorldPoint(new Vector3(0.15f, 0.18f, 0f));
         }
         else if (shootingAngle > 285 && shootingAngle <= 335)
         {
             animationName = "CrouchKick";
-            firePoint.position = new Vector3(-0.15f, 0.18f, 0f);
+            firePoint.localPosition = new Vector3(-0.15f, 0.18f, 0f);
         }
         // 75 - 130 or 230 - 285: Horizontal punch
         else if (shootingAngle > 75 && shootingAngle <= 105)
         {
             animationName = "HorizontalPunch";
-            firePoint.position = new Vector3(0.15f, 0f, 0f);
+            firePoint.localPosition = new Vector3(0.15f, 0f, 0f);
         }
         else if (shootingAngle > 230 && shootingAngle <= 285)
         {
             animationName = "HorizontalPunch";
-            firePoint.position = new Vector3(-0.15f, 0f, 0f);
+            firePoint.localPosition = new Vector3(-0.15f, 0f, 0f);
         }
         // 130 - 230: Flying kick
         else if (shootingAngle > 130 && shootingAngle <= 180)
         {
             animationName = "FlyingKick";
-            firePoint.position = new Vector3(0.15f, -0.18f, 0f);
+            firePoint.localPosition = new Vector3(0.15f, -0.18f, 0f);
         }
         else if (shootingAngle > 180 && shootingAngle <= 230)
         {
             animationName = "FlyingKick";
-            firePoint.position = new Vector3(-0.15f, -0.18f, 0f);
+            firePoint.localPosition = new Vector3(-0.15f, -0.18f, 0f);
         }
         // 335 - 25: Vertical Kick
         else
         {
             animationName = "VerticalKick";
-            firePoint.position = new Vector3(0f, 0.18f, 0f);
+            firePoint.localPosition = new Vector3(0f, 0.18f, 0f);
         }
        
     }
