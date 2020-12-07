@@ -1,37 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Q : MonoBehaviour
 {
-    public Transform horizontalFirePoint;
-    public Transform verticalFirePoint;
+    public GameObject shootingLine;
+    public Transform firePoint;
 
     public Animator animator;
     public GameObject bulletPrefab;
     public Camera camera;
-    public GameObject horizontalLine;
-    public GameObject verticalLine;
 
     [Range(0, 30)][SerializeField]public int cooldownTime = 5;
     private float nextFireTime = 0f;
     
     public float animationTime;
     private float animationTimeLeft = 0f;
+    private String animationName;
     private bool shooting = false;
-
-    private bool horizontal = true;
-
-    void Start()
-    {
-        verticalLine.SetActive(false);
-    }
+    private float shootingAngle = 0f;
     
+
     // Update is called once per frame
     void Update()
     {
         CooldownHandling();
-
+        AdjustFirePointAndAnimation();
         RotateLineAccordingToMouse();
         
         // Reduce animation time left
@@ -43,9 +38,7 @@ public class Q : MonoBehaviour
         {
             if (shooting)
             {
-                animator.SetBool("HorizontalShooting", false);
-                animator.SetBool("VerticalShooting", false);
-                
+                SetAnimationFalse();
                 shooting = false;
             }
         }
@@ -54,65 +47,40 @@ public class Q : MonoBehaviour
 
     void RotateLineAccordingToMouse()
     {
-        Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
 
-        // Compare the player and mouse position
-        // If mouse position is above player position
-        if (mousePosition.y > (gameObject.transform.position.y + 1))
-        {
-            if (horizontal)
-            {
-                horizontal = false;
-                horizontalLine.SetActive(false);
-                verticalLine.SetActive(true);
-            }
-        }
-        else
-        {
-            if (!horizontal)
-            {
-              horizontal = true;  
-              horizontalLine.SetActive(true);
-              verticalLine.SetActive(false);
-            }
-        }
+        Vector2 lookingDirection = mousePosition - shootingLine.transform.position;
+        shootingAngle = Mathf.Atan2(lookingDirection.y, lookingDirection.x) * Mathf.Rad2Deg;
+
+        shootingLine.transform.rotation = Quaternion.Euler(new Vector3(0,0, shootingAngle));
     }
 
-    void HorizontalShoot()
+    void Shoot()
     {
         // Instantiate bullet
-        StartCoroutine(HorizontalShootingCoroutine());
+        StartCoroutine(ShootingCoroutine());
 
-        animator.SetBool("HorizontalShooting", true);
+        SetAnimationFalse();
+        animator.SetBool(animationName, true);
         animationTimeLeft = animationTime;
         shooting = true;
     }
 
-    IEnumerator HorizontalShootingCoroutine()
+    IEnumerator ShootingCoroutine()
     {
         yield return new WaitForSeconds(animationTime/2);
-        Instantiate(bulletPrefab, horizontalFirePoint.position, horizontalFirePoint.rotation);
-    }
 
-    void VerticalShoot()
-    {
-        // Instantiate bullet
-        StartCoroutine(VerticalShootingCoroutine());
-
-        animator.SetBool("VerticalShooting", true);
-        animationTimeLeft = animationTime;
-        shooting = true;
-    }
-    
-    IEnumerator VerticalShootingCoroutine()
-    {
-        yield return new WaitForSeconds(animationTime/2);
+        firePoint.rotation = Quaternion.Euler(new Vector3(0,0, shootingAngle));
         
-        // Change to shoot vertically
-        Transform rotatedVerticalFirePoint = verticalFirePoint;
-        rotatedVerticalFirePoint.Rotate(0f, 0f, 90f, Space.Self);
-        Instantiate(bulletPrefab, verticalFirePoint.position, rotatedVerticalFirePoint.rotation);
-        rotatedVerticalFirePoint.Rotate(0f, 0f, -90f, Space.Self);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    private void SetAnimationFalse()
+    {
+        animator.SetBool("CrouchKick", false);
+        animator.SetBool("HorizontalPunch", false);
+        animator.SetBool("FlyingKick", false);
+        animator.SetBool("VerticalKick", false);
     }
 
     private void CooldownHandling()
@@ -126,8 +94,7 @@ public class Q : MonoBehaviour
                 // Start cooldown
                 nextFireTime = Time.time + cooldownTime;
                 
-                if (horizontal) HorizontalShoot();
-                else VerticalShoot();
+                Shoot();
             }
         }
         // If on cooldown
@@ -135,5 +102,51 @@ public class Q : MonoBehaviour
         {
             
         }
+    }
+
+    private void AdjustFirePointAndAnimation()
+    {
+        // Set according to ranges
+        
+        // 25 - 75 or 285 - 335: Crouch Kick
+        if (shootingAngle > 25 && shootingAngle <= 75)
+        {
+            animationName = "CrouchKick";
+            firePoint.position = camera.ScreenToWorldPoint(new Vector3(0.15f, 0.18f, 0f));
+        }
+        else if (shootingAngle > 285 && shootingAngle <= 335)
+        {
+            animationName = "CrouchKick";
+            firePoint.position = new Vector3(-0.15f, 0.18f, 0f);
+        }
+        // 75 - 130 or 230 - 285: Horizontal punch
+        else if (shootingAngle > 75 && shootingAngle <= 105)
+        {
+            animationName = "HorizontalPunch";
+            firePoint.position = new Vector3(0.15f, 0f, 0f);
+        }
+        else if (shootingAngle > 230 && shootingAngle <= 285)
+        {
+            animationName = "HorizontalPunch";
+            firePoint.position = new Vector3(-0.15f, 0f, 0f);
+        }
+        // 130 - 230: Flying kick
+        else if (shootingAngle > 130 && shootingAngle <= 180)
+        {
+            animationName = "FlyingKick";
+            firePoint.position = new Vector3(0.15f, -0.18f, 0f);
+        }
+        else if (shootingAngle > 180 && shootingAngle <= 230)
+        {
+            animationName = "FlyingKick";
+            firePoint.position = new Vector3(-0.15f, -0.18f, 0f);
+        }
+        // 335 - 25: Vertical Kick
+        else
+        {
+            animationName = "VerticalKick";
+            firePoint.position = new Vector3(0f, 0.18f, 0f);
+        }
+       
     }
 }
