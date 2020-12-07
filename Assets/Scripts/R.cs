@@ -67,7 +67,7 @@ public class R : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         // If colliding with an enemy and r is not on cooldown
-        if (other.gameObject.tag == "Enemy" && nextFireTime < Time.time)
+        if (other.gameObject.tag == "Enemy" && !currentlyUlting)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
