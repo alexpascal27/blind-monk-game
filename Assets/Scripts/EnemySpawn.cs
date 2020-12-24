@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     // Number of enemies 
     public int numberOfEnemies;
 
-    // Instace of GameObject
+    // Instance of GameObject
     public GameObject enemyPrefab;
 
     public void DoTheSpawn()
@@ -61,10 +61,6 @@ public class EnemySpawn : MonoBehaviour
 
         float ySpan = maxSpawnY - minSpawnY;
         float xSpan = maxSpawnX - minSpawnX;
-
-        float availableSpawnArea = xSpan * ySpan;
-
-        int availableSlots = (int)(availableSpawnArea/maxSize);
 
         List<float[]> slotCoordinates = new List<float[]>();
         for(int row = (int)(maxSize); row < (int)(ySpan); row+=(int)(maxSize))
@@ -111,12 +107,5 @@ public class EnemySpawn : MonoBehaviour
         enemy.transform.position = new Vector2(x, y);
         float randomSize = Random.Range(minSize, maxSize);
         enemy.transform.localScale = new Vector2(randomSize, randomSize);
-    }
-
-    private Vector2 RandomVector(float min, float max)
-    {
-        float x = Random.Range(min, max);
-        float y = Random.Range(min, max);
-        return new Vector2(x, y);
     }
 }

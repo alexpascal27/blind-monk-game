@@ -6,6 +6,9 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class EnemyMovement : MonoBehaviour
 {
+    // Enemy stat manager object
+    public GameObject enemyStats;
+    
     private int lifePoints;
     int initalLifePoints;
     public EnemySpawn m_enemySpawnScript;
@@ -44,7 +47,13 @@ public class EnemyMovement : MonoBehaviour
         // Ran out of life points, so die
         if(lifePoints==0)
         {
-            m_enemySpawnScript.DoTheSpawn();
+            // First check if we need to spawn 
+            if (enemyStats.GetComponent<EnemyStats>().numberOfEnemiesLeftToSpawn > 0)
+            {
+                m_enemySpawnScript.DoTheSpawn();
+                m_enemySpawnScript.DoTheSpawn();
+                enemyStats.GetComponent<EnemyStats>().numberOfEnemiesLeftToSpawn--;
+            }
             Destroy(gameObject);
         }
 
@@ -52,7 +61,6 @@ public class EnemyMovement : MonoBehaviour
         {
             SetColourAccordingToLife();
             
-
             lightTimer -= Time.smoothDeltaTime;
             if(lightTimer<=0)
             {
