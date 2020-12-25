@@ -10,45 +10,35 @@ public class EnemyStats : MonoBehaviour
     [Range(0, 3)][SerializeField]public int difficulty = 0;
 
     private int numberOfEnemies;
-    public int numberOfEnemiesLeftToSpawn;
-    
+
     private float minEnemySpeed;
-
-    public int NumberOfEnemies
-    {
-        get => numberOfEnemies;
-        set => numberOfEnemies = value;
-    }
-
-    public float MINEnemySpeed
-    {
-        get => minEnemySpeed;
-        set => minEnemySpeed = value;
-    }
-
-    public float MAXEnemySpeed
-    {
-        get => maxEnemySpeed;
-        set => maxEnemySpeed = value;
-    }
-
-    public float MINEnemyScale
-    {
-        get => minEnemyScale;
-        set => minEnemyScale = value;
-    }
-
-    public float MAXEnemyScale
-    {
-        get => maxEnemyScale;
-        set => maxEnemyScale = value;
-    }
-
     private float maxEnemySpeed;
 
     private float minEnemyScale;
     private float maxEnemyScale;
 
+    public int GetNumberOfEnemies()
+    {
+        return numberOfEnemies;
+    }
+    
+    public float GetMinEnemySpeed()
+    {
+        return minEnemySpeed;
+    }
+    public float GetMaxEnemySpeed()
+    {
+        return maxEnemySpeed;
+    }
+    
+    public float GetMinEnemyScale()
+    {
+        return minEnemyScale;
+    }
+    public float GetMaxEnemyScale()
+    {
+        return maxEnemyScale;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +78,5 @@ public class EnemyStats : MonoBehaviour
                 maxEnemyScale = 1f * EnemyScale;
                 break;
         }
-
-        numberOfEnemiesLeftToSpawn = numberOfEnemies;
     }
 }

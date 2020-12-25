@@ -18,21 +18,20 @@ public class EnemySpawn : MonoBehaviour
     public float minSize;
     public float maxSize;
     
-    // Number of enemies 
-    public int numberOfEnemies;
+    // Enemy stat manager object
+    public GameObject enemyStats;
 
     // Instance of GameObject
     public GameObject enemyPrefab;
 
-    public void DoTheSpawn()
+    public void DoTheSpawn(int enemiesToSpawn)
     {
         SetSpawn();
-        SpawnAtRandom(GetAvailableSlots());
+        SpawnAtRandom(GetAvailableSlots(), enemiesToSpawn);
     }
 
     void Start()
     {
-        
         rb2D = GetComponent<Rigidbody2D>();
         float randomX = Random.Range(-2, 2);
         float randomY = Random.Range(-2, 2);
@@ -80,10 +79,9 @@ public class EnemySpawn : MonoBehaviour
         return slotCoordinates;
     }
 
-    void SpawnAtRandom(List<float[]> availableSlots)
+    void SpawnAtRandom(List<float[]> availableSlots, int enemiesToSpawn)
     {
         int availableSlotsNumber = availableSlots.Count;
-        int enemiesToSpawn = (int)Random.Range(1f, numberOfEnemies+0.5f);
 
         while(enemiesToSpawn > 0 && availableSlotsNumber>0)
         {
