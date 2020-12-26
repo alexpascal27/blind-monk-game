@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
     // Range for spawn area
     float maxSpawnY;
     float minSpawnY;
@@ -17,9 +17,6 @@ public class EnemySpawn : MonoBehaviour
     // Range for enemy size
     public float minSize;
     public float maxSize;
-    
-    // Enemy stat manager object
-    public GameObject enemyStats;
 
     // Instance of GameObject
     public GameObject enemyPrefab;
@@ -32,7 +29,6 @@ public class EnemySpawn : MonoBehaviour
 
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
         float randomX = Random.Range(-2, 2);
         float randomY = Random.Range(-2, 2);
         do 
@@ -105,5 +101,6 @@ public class EnemySpawn : MonoBehaviour
         enemy.transform.position = new Vector2(x, y);
         float randomSize = Random.Range(minSize, maxSize);
         enemy.transform.localScale = new Vector2(randomSize, randomSize);
+        Debug.Log("Enemy Spawned");
     }
 }

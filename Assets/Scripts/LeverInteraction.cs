@@ -3,36 +3,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LeverInteraction : MonoBehaviour
 {
     private float chargeCounter = 0;
     private bool leverTouchingPlayer = false;
+    private MoveToNextLeverLevel logic;
+    public int currentLeverLevel = 0;
+    
+    private void Start()
+    {
+        logic = gameObject.GetComponent<MoveToNextLeverLevel>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (chargeCounter > 2)
+        // Still playing
+        if (currentLeverLevel >= 0 && currentLeverLevel < 3)
         {
-            // moving to next stage logic
+            if (chargeCounter > 2)
+            {
+                Debug.Log("Charged fully!");
+                // moving to next stage logic
+                currentLeverLevel = logic.Execute(currentLeverLevel);
+
+                chargeCounter = 0;
             
-        }
+            }
         
-        if (Input.GetKey(KeyCode.Space) && leverTouchingPlayer)
-        {
-            Debug.Log("Charging: " + chargeCounter);
-            chargeCounter += Time.deltaTime;
+            if (Input.GetKey(KeyCode.Space) && leverTouchingPlayer)
+            {
+                Debug.Log("Charging: " + chargeCounter);
+                chargeCounter += Time.deltaTime;
+            }
+            else
+            {
+                chargeCounter = 0;
+            }
         }
+        // Won
         else
         {
-            chargeCounter = 0;
+            Debug.Log("YOU WON!");
         }
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Lever enter player");
             if(!leverTouchingPlayer) leverTouchingPlayer = true;
         }
     }
@@ -41,7 +63,6 @@ public class LeverInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Lever exit player");
             leverTouchingPlayer = false;
         }
     }
