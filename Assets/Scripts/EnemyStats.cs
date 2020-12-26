@@ -4,79 +4,38 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-    private const float EnemySpeed = 5;
+    private const float EnemySpeed = 4;
     private const float EnemyScale = 1;
     
     [Range(0, 3)][SerializeField]public int difficulty = 0;
 
-    private int numberOfEnemies;
-
-    private float minEnemySpeed;
-    private float maxEnemySpeed;
-
-    private float minEnemyScale;
-    private float maxEnemyScale;
+    private int[] numberOfEnemies = new int[4] {3, 3, 5, 5};
+    
+    private float[] minSpeedScales = new float[4] {0.5f, 1f, 1f, 1.5f};
+    private float[] maxSpeedScales = new float[4] {1f, 1.5f, 1.5f, 2f};
+    private float[] minScaleScales = new float[4] {1.5f, 1.25f, 1.25f, 1f};
+    private float[] maxScaleScales = new float[4] {2f, 1.75f, 1.75f, 1.5f};
 
     public int GetNumberOfEnemies()
     {
-        return numberOfEnemies;
+        return numberOfEnemies[difficulty];
     }
     
     public float GetMinEnemySpeed()
     {
-        return minEnemySpeed;
+        return EnemySpeed * minSpeedScales[difficulty];
     }
     public float GetMaxEnemySpeed()
     {
-        return maxEnemySpeed;
+        return EnemySpeed * maxSpeedScales[difficulty];
     }
     
     public float GetMinEnemyScale()
     {
-        return minEnemyScale;
+        return EnemyScale * minScaleScales[difficulty];
     }
     public float GetMaxEnemyScale()
     {
-        return maxEnemyScale;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        switch (difficulty)
-        {
-            // Casual
-            case(0):
-                numberOfEnemies = 3;
-                minEnemySpeed = 0.5f * EnemySpeed;
-                maxEnemySpeed = 1f * EnemySpeed;
-                minEnemyScale = 1.5f * EnemyScale;
-                maxEnemyScale = 2f * EnemyScale;
-                break;
-            // Normal
-            case(1):
-                numberOfEnemies = 3;
-                minEnemySpeed = 1f * EnemySpeed;
-                maxEnemySpeed = 1.5f * EnemySpeed;
-                minEnemyScale = 1f * EnemyScale;
-                maxEnemyScale = 1.5f * EnemyScale;
-                break;
-            // Rage mode
-            case(2):
-                numberOfEnemies = 5;
-                minEnemySpeed = 1f * EnemySpeed;
-                maxEnemySpeed = 1.5f * EnemySpeed;
-                minEnemyScale = 1f * EnemyScale;
-                maxEnemyScale = 1.5f * EnemyScale;
-                break;
-            // Impossible
-            case(3):
-                numberOfEnemies = 5;
-                minEnemySpeed = 1.5f * EnemySpeed;
-                maxEnemySpeed = 2f * EnemySpeed;
-                minEnemyScale = 0.5f * EnemyScale;
-                maxEnemyScale = 1f * EnemyScale;
-                break;
-        }
+        return EnemyScale * maxScaleScales[difficulty];
     }
 }

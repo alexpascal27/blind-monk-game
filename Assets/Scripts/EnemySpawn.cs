@@ -17,9 +17,16 @@ public class EnemySpawn : MonoBehaviour
     // Range for enemy size
     public float minSize;
     public float maxSize;
+    
+    // Range for enemy speed
+    private float minSpeed;
+    private float maxSpeed;
 
     // Instance of GameObject
     public GameObject enemyPrefab;
+    
+    // Instance of enemy stat manager
+    public EnemyStats enemyStats;
 
     public void DoTheSpawn(int enemiesToSpawn)
     {
@@ -29,6 +36,14 @@ public class EnemySpawn : MonoBehaviour
 
     void Start()
     {
+        if(enemyStats==null) Debug.Log("enemy stats script is null");
+
+        minSpeed = enemyStats.GetMinEnemySpeed();
+        Debug.Log("MinSpeed: " + minSpeed);
+        maxSpeed = enemyStats.GetMaxEnemySpeed();
+        Debug.Log("MaxSpeed: " + maxSpeed);
+        float velocity = GetVelocity();
+
         float randomX = Random.Range(-2, 2);
         float randomY = Random.Range(-2, 2);
         do 
@@ -39,7 +54,16 @@ public class EnemySpawn : MonoBehaviour
         Vector2 direction = new Vector2(randomX, randomY);
 
         // Max scale - scale * 5
-        rb2D.velocity = direction.normalized * (5 * Mathf.Max((maxSize-gameObject.transform.localScale.x), 0.2f));
+        rb2D.velocity = direction.normalized * (velocity * Mathf.Max((maxSize-gameObject.transform.localScale.x), 0.2f));
+    }
+
+    private float GetVelocity()
+    {
+        float scale = gameObject.transform.localScale.x;
+        // Work out scale relative to min max bounds
+        float percentange = scale - 1;
+
+        return (maxSpeed - minSpeed) * percentange + minSpeed;
     }
 
     void SetSpawn()
