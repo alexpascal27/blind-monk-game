@@ -15,8 +15,8 @@ public class EnemySpawn : MonoBehaviour
     private Vector2 screenBounds;
 
     // Range for enemy size
-    public float minSize;
-    public float maxSize;
+    private float minScale;
+    private float maxScale;
     
     // Range for enemy speed
     private float minSpeed;
@@ -38,10 +38,11 @@ public class EnemySpawn : MonoBehaviour
     {
         if(enemyStats==null) Debug.Log("enemy stats script is null");
 
+        minScale = enemyStats.GetMinEnemyScale();
+        maxScale = enemyStats.GetMaxEnemyScale();
+        
         minSpeed = enemyStats.GetMinEnemySpeed();
-        Debug.Log("MinSpeed: " + minSpeed);
         maxSpeed = enemyStats.GetMaxEnemySpeed();
-        Debug.Log("MaxSpeed: " + maxSpeed);
         float velocity = GetVelocity();
 
         float randomX = Random.Range(-2, 2);
@@ -54,7 +55,7 @@ public class EnemySpawn : MonoBehaviour
         Vector2 direction = new Vector2(randomX, randomY);
 
         // Max scale - scale * 5
-        rb2D.velocity = direction.normalized * (velocity * Mathf.Max((maxSize-gameObject.transform.localScale.x), 0.2f));
+        rb2D.velocity = direction.normalized * (velocity * Mathf.Max((maxScale-gameObject.transform.localScale.x), 0.2f));
     }
 
     private float GetVelocity()
@@ -82,9 +83,9 @@ public class EnemySpawn : MonoBehaviour
         float xSpan = maxSpawnX - minSpawnX;
 
         List<float[]> slotCoordinates = new List<float[]>();
-        for(int row = (int)(maxSize); row < (int)(ySpan); row+=(int)(maxSize))
+        for(int row = (int)(maxScale); row < (int)(ySpan); row+=(int)(maxScale))
         {
-            for(int column = (int)(maxSize); column < (int)(xSpan); column+=(int)(maxSize))
+            for(int column = (int)(maxScale); column < (int)(xSpan); column+=(int)(maxScale))
             {
                 // Work out x coordinate
                 float x =  minSpawnX + column;
@@ -123,7 +124,7 @@ public class EnemySpawn : MonoBehaviour
     {
         GameObject enemy = Instantiate(enemyPrefab) as GameObject;
         enemy.transform.position = new Vector2(x, y);
-        float randomSize = Random.Range(minSize, maxSize);
+        float randomSize = Random.Range(minScale, maxScale);
         enemy.transform.localScale = new Vector2(randomSize, randomSize);
         Debug.Log("Enemy Spawned");
     }
