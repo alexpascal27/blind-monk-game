@@ -122,10 +122,9 @@ public class EnemySpawn : MonoBehaviour
 
     private void SpawnEnemy(float x, float y)
     {
-        GameObject enemy = Instantiate(enemyPrefab) as GameObject;
-        enemy.transform.position = new Vector2(x, y);
+        gameObject.transform.position = new Vector2(x, y);
         float randomSize = Random.Range(minScale, maxScale);
-        enemy.transform.localScale = new Vector2(randomSize, randomSize);
+        gameObject.transform.localScale = new Vector2(randomSize, randomSize);
         Debug.Log("Enemy Spawned");
     }
 }

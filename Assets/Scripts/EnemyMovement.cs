@@ -46,7 +46,6 @@ public class EnemyMovement : MonoBehaviour
         if(lifePoints==0)
         {
             m_enemySpawnScript.DoTheSpawn(1);
-            Destroy(gameObject);
         }
 
         if(lightOn)
