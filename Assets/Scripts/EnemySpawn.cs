@@ -69,7 +69,7 @@ public class EnemySpawn : MonoBehaviour
 
     List<float[]> GetAvailableSlots()
     {
-        minSpawnY = -(screenBounds.y / 2);
+        minSpawnY = 0;
         maxSpawnY = screenBounds.y;
         minSpawnX = -screenBounds.x;
         maxSpawnX = screenBounds.x;

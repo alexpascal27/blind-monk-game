@@ -9,9 +9,9 @@ public class MainMenu : MonoBehaviour
     private const float EnemySpeed = 4;
     private const float EnemyScale = 1;
 
-    private int[] numberOfEnemies = new int[4] {3, 3, 5, 5};
-    private float[] minSpeedScales = new float[4] {0.5f, 1f, 1f, 1.5f};
-    private float[] maxSpeedScales = new float[4] {1f, 1.5f, 1.5f, 2f};
+    private int[] numberOfEnemies = new int[4] {2, 2, 3, 3};
+    private float[] minSpeedScales = new float[4] {1f, 1.25f, 1.5f, 2f};
+    private float[] maxSpeedScales = new float[4] {1.5f, 1.75f, 2f, 3f};
     private float[] minScaleScales = new float[4] {1.5f, 1.25f, 1.25f, 1f};
     private float[] maxScaleScales = new float[4] {2f, 1.75f, 1.75f, 1.5f};
     

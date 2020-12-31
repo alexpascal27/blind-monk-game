@@ -10,6 +10,8 @@ public class LeverInteraction : MonoBehaviour
     private bool leverTouchingPlayer = false;
     private MoveToNextLeverLevel logic;
     public int currentLeverLevel = 0;
+
+    [Range(0, 30)] [SerializeField] public int chargeLength;
     
     private void Start()
     {
@@ -22,7 +24,7 @@ public class LeverInteraction : MonoBehaviour
         // Still playing
         if (currentLeverLevel >= 0 && currentLeverLevel < 3)
         {
-            if (chargeCounter > 2)
+            if (chargeCounter > chargeLength)
             {
                 Debug.Log("Charged fully!");
                 // moving to next stage logic
