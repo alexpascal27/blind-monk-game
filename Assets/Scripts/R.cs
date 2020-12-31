@@ -71,7 +71,7 @@ public class R : MonoBehaviour
         // If colliding with an enemy and r is not on cooldown
         if (other.gameObject.tag == "Enemy" && !currentlyUlting)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(2);
         }
     }
 }

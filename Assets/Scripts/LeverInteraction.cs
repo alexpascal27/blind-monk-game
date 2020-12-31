@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class LeverInteraction : MonoBehaviour
@@ -47,7 +48,7 @@ public class LeverInteraction : MonoBehaviour
         // Won
         else
         {
-            Debug.Log("YOU WON!");
+            SceneManager.LoadScene(3);
         }
 
         
