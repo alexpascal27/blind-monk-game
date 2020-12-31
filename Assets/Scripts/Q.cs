@@ -12,7 +12,6 @@ public class Q : MonoBehaviour
     public GameObject bulletPrefab;
     public Camera camera;
 
-    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
     private float nextFireTime = 0f;
     
     public float animationTime;
@@ -116,7 +115,7 @@ public class Q : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 // Start cooldown
-                nextFireTime = Time.time + cooldownTime;
+                nextFireTime = Time.time + PlayerPrefs.GetFloat("QCooldown");
                 
                 Shoot();
             }

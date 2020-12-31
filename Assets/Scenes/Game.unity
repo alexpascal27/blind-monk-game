@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 244705852}
   - component: {fileID: 244705853}
   - component: {fileID: 244705854}
-  - component: {fileID: 244705848}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -391,19 +390,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &244705848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244705841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7327b70b560f45aaf95756b699f7f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 0
 --- !u!95 &244705849
 Animator:
   serializedVersion: 3
@@ -467,7 +453,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7343035862340679433, guid: 8af387030027c8e1e97d77a9fada17a7,
     type: 3}
   camera: {fileID: 519420031}
-  cooldownTime: 3
   animationTime: 0.3
 --- !u!114 &244705852
 MonoBehaviour:

@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class R : MonoBehaviour
 {
-    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
-    [Range(0, 5)][SerializeField]public int activeTime = 2;
+    private float cooldownTime;
+    private float activeTime;
     private float nextFireTime = 0f;
     private bool currentlyUlting  = false;
     
@@ -18,6 +18,8 @@ public class R : MonoBehaviour
     private void Start()
     {
         initialColor = innerLight.color;
+        cooldownTime = PlayerPrefs.GetFloat("RCooldown");
+        activeTime = PlayerPrefs.GetFloat("RActiveTime");
     }
 
     // Update is called once per frame

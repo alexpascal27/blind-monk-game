@@ -5,8 +5,7 @@ using UnityEngine;
 public class LShift : MonoBehaviour
 {
     public Camera camera;
-
-    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
+    
     private float nextFireTime = 0f;
     
     // Update is called once per frame
@@ -53,7 +52,7 @@ public class LShift : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 // Start cooldown
-                nextFireTime = Time.time + cooldownTime;
+                nextFireTime = Time.time + PlayerPrefs.GetFloat("LShiftCooldown");
                 
                 MovePlayerToMousePosition();
             }

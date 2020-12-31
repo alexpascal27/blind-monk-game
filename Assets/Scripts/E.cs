@@ -9,13 +9,19 @@ public class E : MonoBehaviour
 {
     [Range(0, 10)][SerializeField]public int innerRadiusIncrease = 2;
     [Range(0, 10)][SerializeField]public int outerRadiusIncrease = 4;
-    [Range(0, 30)][SerializeField]public int cooldownTime = 5;
-    [Range(0, 5)][SerializeField]public int activeTime = 2;
+    private float cooldownTime;
+    private float activeTime;
     private float nextFireTime = 0f;
     private bool rangeCurrentlyIncreased  = false;
     
     public Light2D innerLight;
     public Light2D outerLight;
+
+    private void Start()
+    {
+        cooldownTime = PlayerPrefs.GetFloat("ECooldown");
+        activeTime = PlayerPrefs.GetFloat("EActiveTime");
+    }
 
     private void Update()
     {
