@@ -1456,7 +1456,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1655651194
 BoxCollider2D:
@@ -1521,7 +1521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9141e6cd032b4294bbae64769869bf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 2138577782}
   m_enemySpawnScript: {fileID: 1655651198}
 --- !u!114 &1655651198
 MonoBehaviour:
@@ -1538,7 +1537,6 @@ MonoBehaviour:
   rb2D: {fileID: 2138622920}
   enemyPrefab: {fileID: 3363666273434836400, guid: cade41ac4eeb9d29e8246b6bb7265ab8,
     type: 3}
-  enemyStats: {fileID: 2138577782}
 --- !u!1 &1669992587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,50 +1675,6 @@ Transform:
   m_Father: {fileID: 924881268}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!1 &2138577781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2138577783}
-  - component: {fileID: 2138577782}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2138577782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138577781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d77a7803f01660de09816bed84dbe481, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 3
---- !u!4 &2138577783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138577781}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9632416, y: 1.4894611, z: -0.21847461}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2138622920 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3363666273434836412, guid: cade41ac4eeb9d29e8246b6bb7265ab8,
@@ -1828,6 +1782,6 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyStats
       value: 
-      objectReference: {fileID: 2138577782}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cade41ac4eeb9d29e8246b6bb7265ab8, type: 3}

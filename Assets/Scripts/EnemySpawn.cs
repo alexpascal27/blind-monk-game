@@ -24,9 +24,6 @@ public class EnemySpawn : MonoBehaviour
 
     // Instance of GameObject
     public GameObject enemyPrefab;
-    
-    // Instance of enemy stat manager
-    public EnemyStats enemyStats;
 
     public void DoTheSpawn(int enemiesToSpawn)
     {
@@ -36,13 +33,11 @@ public class EnemySpawn : MonoBehaviour
 
     void Start()
     {
-        if(enemyStats==null) Debug.Log("enemy stats script is null");
-
-        minScale = enemyStats.GetMinEnemyScale();
-        maxScale = enemyStats.GetMaxEnemyScale();
+        minScale = PlayerPrefs.GetFloat("minEnemyScale");
+        maxScale = PlayerPrefs.GetFloat("maxEnemyScale");
         
-        minSpeed = enemyStats.GetMinEnemySpeed();
-        maxSpeed = enemyStats.GetMaxEnemySpeed();
+        minSpeed = PlayerPrefs.GetFloat("minEnemySpeed");
+        maxSpeed = PlayerPrefs.GetFloat("maxEnemySpeed");
         float velocity = GetVelocity();
 
         float randomX = Random.Range(-2, 2);
@@ -122,9 +117,10 @@ public class EnemySpawn : MonoBehaviour
 
     private void SpawnEnemy(float x, float y)
     {
-        gameObject.transform.position = new Vector2(x, y);
+        GameObject enemy = Instantiate(enemyPrefab) as GameObject;
+        enemy.transform.position = new Vector2(x, y);
         float randomSize = Random.Range(minScale, maxScale);
-        gameObject.transform.localScale = new Vector2(randomSize, randomSize);
+        enemy.transform.localScale = new Vector2(randomSize, randomSize);
         Debug.Log("Enemy Spawned");
     }
 }

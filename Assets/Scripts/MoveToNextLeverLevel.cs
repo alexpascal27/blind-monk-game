@@ -6,7 +6,6 @@ public class MoveToNextLeverLevel : MonoBehaviour
 {
     private Vector2 screenBounds;
     
-    public EnemyStats enemyStats;
     public EnemySpawn m_enemySpawnScript;
 
     private void Start()
@@ -20,7 +19,8 @@ public class MoveToNextLeverLevel : MonoBehaviour
         if (level < 3)
         {
             // Work out how many enemies need to be spawned
-            int enemiesToSpawn = Mathf.FloorToInt(enemyStats.GetNumberOfEnemies() / 2);
+            int enemiesToSpawn = Mathf.FloorToInt(PlayerPrefs.GetInt("numberOfEnemies") / 2);
+            Debug.Log("Need to spawn: " + enemiesToSpawn);
             
             // Spawn more enemies
             m_enemySpawnScript.DoTheSpawn(enemiesToSpawn);
