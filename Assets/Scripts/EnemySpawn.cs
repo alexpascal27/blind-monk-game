@@ -50,7 +50,7 @@ public class EnemySpawn : MonoBehaviour
         Vector2 direction = new Vector2(randomX, randomY);
 
         // Max scale - scale * 5
-        rb2D.velocity = direction.normalized * (velocity * Mathf.Max((maxScale-gameObject.transform.localScale.x), 0.2f));
+        rb2D.velocity = direction.normalized * (velocity);
     }
 
     private float GetVelocity()

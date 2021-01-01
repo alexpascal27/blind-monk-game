@@ -1,18 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class E : MonoBehaviour
 {
+    public Texture eIcon;
+    public Texture eActiveIcon;
+    public Texture eGreyIcon;
+    
     [Range(0, 10)][SerializeField]public int innerRadiusIncrease = 2;
     [Range(0, 10)][SerializeField]public int outerRadiusIncrease = 4;
     private float cooldownTime;
     private float activeTime;
     private float nextFireTime = 0f;
     private bool rangeCurrentlyIncreased  = false;
+    private bool onCooldown = false;
     
     public Light2D innerLight;
     public Light2D outerLight;
@@ -28,11 +29,13 @@ public class E : MonoBehaviour
         // If our ability is currently not on cooldown
         if (nextFireTime < Time.time)
         {
+            onCooldown = false;
             // If we pressed E
              if (Input.GetKeyDown(KeyCode.E))
              {
                  // Start cooldown
                  nextFireTime = Time.time + cooldownTime + activeTime;
+                 onCooldown = true;
              }
         }
         else
@@ -68,5 +71,22 @@ public class E : MonoBehaviour
             }
         }
 
+    }
+    
+    void OnGUI()
+    {
+        if (rangeCurrentlyIncreased)
+        {
+            GUI.Label(new Rect(736,47,85,85), eActiveIcon); 
+        }
+        else if (!onCooldown)
+        {
+            GUI.Label(new Rect(736,47,85,85), eIcon); 
+        }
+        else
+        {
+            GUI.Label(new Rect(736,47,85,85), eGreyIcon); 
+        }
+        
     }
 }

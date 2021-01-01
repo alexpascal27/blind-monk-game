@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Q : MonoBehaviour
 {
+    public Texture qIcon;
+    public Texture qGreyIcon;
+    
     public GameObject shootingLine;
     public Transform firePoint;
 
@@ -13,6 +16,7 @@ public class Q : MonoBehaviour
     public Camera camera;
 
     private float nextFireTime = 0f;
+    private bool onCooldown = false;
     
     public float animationTime;
     private float animationTimeLeft = 0f;
@@ -111,19 +115,27 @@ public class Q : MonoBehaviour
         // If our ability is currently not on cooldown
         if (nextFireTime < Time.time)
         {
+            onCooldown = false;
             // If we pressed Q
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 // Start cooldown
                 nextFireTime = Time.time + PlayerPrefs.GetFloat("QCooldown");
-                
+                onCooldown = true;
                 Shoot();
             }
         }
-        // If on cooldown
+    }
+
+    void OnGUI()
+    {
+        if (!onCooldown)
+        {
+            GUI.Label(new Rect(532f,46,85,85), qIcon); 
+        }
         else
         {
-            
+            GUI.Label(new Rect(532f,46,85,85), qGreyIcon); 
         }
     }
 

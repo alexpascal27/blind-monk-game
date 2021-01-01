@@ -5,7 +5,11 @@ using UnityEngine;
 public class LShift : MonoBehaviour
 {
     public Camera camera;
+
+    public Texture lShiftIcon;
+    public Texture lShiftGreyIcon;
     
+    private bool onCooldown = false;
     private float nextFireTime = 0f;
     
     // Update is called once per frame
@@ -48,19 +52,28 @@ public class LShift : MonoBehaviour
         // If our ability is currently not on cooldown
         if (nextFireTime < Time.time)
         {
+            onCooldown = false;
             // If we pressed LShift
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 // Start cooldown
                 nextFireTime = Time.time + PlayerPrefs.GetFloat("LShiftCooldown");
-                
+                onCooldown = true;
                 MovePlayerToMousePosition();
             }
         }
-        // If on cooldown
+    }
+    
+    void OnGUI()
+    {
+        if (!onCooldown)
+        {
+            GUI.Label(new Rect(634f,46,85,85), lShiftIcon); 
+        }
         else
         {
-            
+            GUI.Label(new Rect(634f,46,85,85), lShiftGreyIcon); 
         }
+        
     }
 }

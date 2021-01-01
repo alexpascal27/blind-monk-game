@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class R : MonoBehaviour
 {
+    public Texture rIcon;
+    public Texture rActiveIcon;
+    public Texture rGreyIcon;
+    
     private float cooldownTime;
     private float activeTime;
     private float nextFireTime = 0f;
     private bool currentlyUlting  = false;
+    private bool onCooldown = false;
     
     public Light2D innerLight;
     private Color initialColor;
@@ -28,11 +30,13 @@ public class R : MonoBehaviour
         // If our ability is currently not on cooldown
         if (nextFireTime < Time.time)
         {
+            onCooldown = false;
             // If we pressed E
             if (Input.GetKeyDown(KeyCode.R))
             {
                 // Start cooldown
                 nextFireTime = Time.time + cooldownTime + activeTime;
+                onCooldown = true;
             }
         }
         else
@@ -64,6 +68,23 @@ public class R : MonoBehaviour
                 
             }
         }
+    }
+    
+    void OnGUI()
+    {
+        if (currentlyUlting)
+        {
+            GUI.Label(new Rect(838,47,85,85), rActiveIcon); 
+        }
+        else if (!onCooldown)
+        {
+            GUI.Label(new Rect(838,47,85,85), rIcon); 
+        }
+        else
+        {
+            GUI.Label(new Rect(838,47,85,85), rGreyIcon); 
+        }
+        
     }
     
     private void OnCollisionEnter2D(Collision2D other)
