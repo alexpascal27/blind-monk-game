@@ -10,7 +10,8 @@ public class LeverInteraction : MonoBehaviour
     public Animator animator;
     
     public Texture leverLevelUnavailable;
-    public Texture leverNotCharged;
+    public Texture leverCantCharge;
+    public Texture leverCanCharge;
     public Texture leverCharge0;
     public Texture leverCharge1;
     public Texture leverCharge2;
@@ -80,6 +81,7 @@ public class LeverInteraction : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
+        
         if (other.gameObject.CompareTag("Player"))
         {
             leverTouchingPlayer = false;
@@ -88,30 +90,38 @@ public class LeverInteraction : MonoBehaviour
 
     private void DisplayCurrentLeverIcons()
     {
-        if (chargeCounter > 0 && chargeCounter < 1)
+        if (leverTouchingPlayer)
         {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge0);
-        }
-        else if (chargeCounter >= 1 && chargeCounter < 2)
-        {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge1);
-        }
-        else if (chargeCounter >= 2 && chargeCounter < 3)
-        {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge2);
-        }
-        else if (chargeCounter >= 3 && chargeCounter < 4)
-        {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge3);
-        }
-        else if (chargeCounter >= 4 && chargeCounter < 5)
-        {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge4);
+            if (chargeCounter > 0 && chargeCounter < 1)
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge0);
+                }
+                else if (chargeCounter >= 1 && chargeCounter < 2)
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge1);
+                }
+                else if (chargeCounter >= 2 && chargeCounter < 3)
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge2);
+                }
+                else if (chargeCounter >= 3 && chargeCounter < 4)
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge3);
+                }
+                else if (chargeCounter >= 4 && chargeCounter < 5)
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCharge4);
+                }
+                else
+                {
+                    GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCanCharge);
+                }
         }
         else
         {
-            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverNotCharged);
+            GUI.Label(new Rect(1125 + currentLeverLevel * 90,85,70,70), leverCantCharge);
         }
+        
     }
 
     private void DisplayBase3LeverIcons()

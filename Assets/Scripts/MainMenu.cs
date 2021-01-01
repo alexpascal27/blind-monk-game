@@ -9,18 +9,17 @@ public class MainMenu : MonoBehaviour
     private const float EnemySpeed = 3f;
     private const float EnemyScale = 1.25f;
 
-    private int[] numberOfEnemies = new int[4] {2, 2, 3, 3};
     private float[] minSpeedScales = new float[4] {1f, 1.5f, 2f, 2.5f};
     private float[] maxSpeedScales = new float[4] {1.5f, 2f, 2.5f, 3f};
     private float[] minScaleScales = new float[4] {1.4f, 1.25f, 1.25f, 1f};
     private float[] maxScaleScales = new float[4] {1.5f, 1.5f, 1.5f, 1.25f};
     
     // Player
-    [Range(0, 30)][SerializeField]public const int QCooldown = 3;
-    [Range(0, 30)][SerializeField]public const int LShiftCooldown = 5;
-    [Range(0, 30)][SerializeField]public const int ECooldown = 5;
+    [Range(0, 30)][SerializeField]public const int QCooldown = 2;
+    [Range(0, 30)][SerializeField]public const int LShiftCooldown = 4;
+    [Range(0, 30)][SerializeField]public const int ECooldown = 4;
     [Range(0, 30)][SerializeField]public const int EActiveTime = 3;
-    [Range(0, 30)][SerializeField]public const int RCooldown = 8;
+    [Range(0, 30)][SerializeField]public const int RCooldown = 6;
     [Range(0, 30)][SerializeField]public const int RActiveTime = 2;
     
     private float[] playerCooldownScale = new float[4] {1f, 2f, 1.5f, 2f};
@@ -56,7 +55,7 @@ public class MainMenu : MonoBehaviour
     private void SetPlayerPrefs(int difficulty)
     {
         // Enemy preferences
-        PlayerPrefs.SetInt("numberOfEnemies", numberOfEnemies[difficulty]);
+        PlayerPrefs.SetInt("numberOfEnemies", 2);
         PlayerPrefs.SetFloat("minEnemySpeed", EnemySpeed * minSpeedScales[difficulty]);
         PlayerPrefs.SetFloat("maxEnemySpeed", EnemySpeed * maxSpeedScales[difficulty]);
         PlayerPrefs.SetFloat("minEnemyScale", EnemyScale * minScaleScales[difficulty]);

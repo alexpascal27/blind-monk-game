@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
 
-    const float runSpeed = 40f;
+    const float runSpeed = 50f;
     float _horizontalMove = 0f;
     float verticalMove = 0f;
     bool jump = false;

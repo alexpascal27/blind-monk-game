@@ -74,8 +74,8 @@ public class EnemySpawn : MonoBehaviour
         minSpawnX = -screenBounds.x;
         maxSpawnX = screenBounds.x;
 
-        float ySpan = maxSpawnY - minSpawnY;
-        float xSpan = maxSpawnX - minSpawnX;
+        float ySpan = maxSpawnY - minSpawnY - 1;
+        float xSpan = maxSpawnX - minSpawnX - 1;
 
         List<float[]> slotCoordinates = new List<float[]>();
         for(int row = (int)(maxScale); row < (int)(ySpan); row+=(int)(maxScale))

@@ -1655,11 +1655,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1655651193}
   - component: {fileID: 1655651192}
-  - component: {fileID: 1655651194}
   - component: {fileID: 1655651196}
   - component: {fileID: 1655651197}
   - component: {fileID: 1655651198}
   - component: {fileID: 1655651195}
+  - component: {fileID: 1655651194}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Lever
@@ -1725,14 +1725,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655651191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.97, y: -3.83, z: -0.21847461}
+  m_LocalPosition: {x: 1.97, y: -3.952, z: -0.21847461}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1655651194
-BoxCollider2D:
+--- !u!58 &1655651194
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1744,19 +1744,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.1022683}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.83, y: 3.31}
-    newSize: {x: 5.83, y: 3.31}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -1.174262}
   serializedVersion: 2
-  m_Size: {x: 2.1846464, y: 1.1054633}
-  m_EdgeRadius: 0
+  m_Radius: 1.7407379
 --- !u!95 &1655651195
 Animator:
   serializedVersion: 3
