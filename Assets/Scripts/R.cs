@@ -93,6 +93,9 @@ public class R : MonoBehaviour
         if (other.gameObject.tag == "Enemy" && !currentlyUlting)
         {
             SceneManager.LoadScene(2);
+            int deathCount = PlayerPrefs.GetInt("DeathCount", 0);
+            PlayerPrefs.SetInt("DeathCount", deathCount+1);
+            PlayerPrefs.Save();
         }
     }
 }
