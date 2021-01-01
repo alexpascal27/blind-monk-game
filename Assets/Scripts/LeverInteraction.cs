@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class LeverInteraction : MonoBehaviour
 {
+    public Animator animator;
+    
     public Texture leverLevelUnavailable;
     public Texture leverNotCharged;
     public Texture leverCharge0;
@@ -40,19 +42,19 @@ public class LeverInteraction : MonoBehaviour
                 // moving to next stage logic
                 currentLeverLevel = logic.Execute(currentLeverLevel);
                 chargeCounter = 0;
-            
             }
         
             if (Input.GetKey(KeyCode.Space) && leverTouchingPlayer)
             {
-                Debug.Log("Charging: " + chargeCounter);
                 chargeCounter += Time.deltaTime;
                 charging = true;
+                animator.SetBool("Charging", true);
             }
             else
             {
                 chargeCounter = 0;
                 charging = false;
+                animator.SetBool("Charging", false);
             }
         }
         // Won

@@ -29,28 +29,28 @@ public class MainMenu : MonoBehaviour
     {
         SetPlayerPrefs(0);
         // Move to game scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
     
     public void Normal()
     {
         SetPlayerPrefs(1);
         // Move to game scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
     
     public void RageMode()
     {
         SetPlayerPrefs(2);
         // Move to game scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
     
     public void Impossible()
     {
         SetPlayerPrefs(3);
         // Move to game scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     private void SetPlayerPrefs(int difficulty)

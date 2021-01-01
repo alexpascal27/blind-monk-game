@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1659,6 +1659,7 @@ GameObject:
   - component: {fileID: 1655651196}
   - component: {fileID: 1655651197}
   - component: {fileID: 1655651198}
+  - component: {fileID: 1655651195}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Lever
@@ -1756,6 +1757,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1846464, y: 1.1054633}
   m_EdgeRadius: 0
+--- !u!95 &1655651195
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655651191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4621977c88490283e8b52198914c5530, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1655651196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,6 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b335f86e183fa69e81b79b1247bde15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1655651195}
   leverLevelUnavailable: {fileID: 2800000, guid: cff60f098c7c2618db7a1354764ec504,
     type: 3}
   leverNotCharged: {fileID: 2800000, guid: 7ec673efffdc9dc45a556730cd8a40a7, type: 3}

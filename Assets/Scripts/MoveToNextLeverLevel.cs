@@ -8,7 +8,7 @@ public class MoveToNextLeverLevel : MonoBehaviour
     public EnemySpawn m_enemySpawnScript;
 
     private int enemiesLeftToSpawn;
-    
+
     private void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -39,7 +39,6 @@ public class MoveToNextLeverLevel : MonoBehaviour
         else
         {
             // Win logic
-            Debug.Log("You Win!");
             return -1;
         }
     }
