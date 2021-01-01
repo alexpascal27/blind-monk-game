@@ -77,15 +77,15 @@ public class E : MonoBehaviour
     {
         if (rangeCurrentlyIncreased)
         {
-            GUI.Label(new Rect(736,47,85,85), eActiveIcon); 
+            GUI.Label(new Rect(870,55,100,100), eActiveIcon); 
         }
         else if (!onCooldown)
         {
-            GUI.Label(new Rect(736,47,85,85), eIcon); 
+            GUI.Label(new Rect(870,55,100,100), eIcon); 
         }
         else
         {
-            GUI.Label(new Rect(736,47,85,85), eGreyIcon); 
+            GUI.Label(new Rect(870,55,100,100), eGreyIcon); 
         }
         
     }

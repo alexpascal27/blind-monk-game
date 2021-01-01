@@ -74,15 +74,15 @@ public class R : MonoBehaviour
     {
         if (currentlyUlting)
         {
-            GUI.Label(new Rect(838,47,85,85), rActiveIcon); 
+            GUI.Label(new Rect(990,55,100,100), rActiveIcon); 
         }
         else if (!onCooldown)
         {
-            GUI.Label(new Rect(838,47,85,85), rIcon); 
+            GUI.Label(new Rect(990,55,100,100), rIcon); 
         }
         else
         {
-            GUI.Label(new Rect(838,47,85,85), rGreyIcon); 
+            GUI.Label(new Rect(990,55,100,100), rGreyIcon); 
         }
         
     }

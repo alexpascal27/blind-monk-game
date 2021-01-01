@@ -68,11 +68,11 @@ public class LShift : MonoBehaviour
     {
         if (!onCooldown)
         {
-            GUI.Label(new Rect(634f,46,85,85), lShiftIcon); 
+            GUI.Label(new Rect(750,55,100,100), lShiftIcon); 
         }
         else
         {
-            GUI.Label(new Rect(634f,46,85,85), lShiftGreyIcon); 
+            GUI.Label(new Rect(750,55,100,100), lShiftGreyIcon); 
         }
         
     }

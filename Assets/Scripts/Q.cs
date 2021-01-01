@@ -131,11 +131,11 @@ public class Q : MonoBehaviour
     {
         if (!onCooldown)
         {
-            GUI.Label(new Rect(532f,46,85,85), qIcon); 
+            GUI.Label(new Rect(630,55,100,100), qIcon); 
         }
         else
         {
-            GUI.Label(new Rect(532f,46,85,85), qGreyIcon); 
+            GUI.Label(new Rect(630,55,100,100), qGreyIcon); 
         }
     }
 
