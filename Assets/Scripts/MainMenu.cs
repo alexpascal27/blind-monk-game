@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Game
+    private String[] difficultyStrings = new String[4] {"Casual", "Normal", "RAGE MODE", "impossible"};
+    
     // Enemy
     private const float EnemySpeed = 3f;
     private const float EnemyScale = 1.25f;
@@ -54,6 +56,8 @@ public class MainMenu : MonoBehaviour
 
     private void SetPlayerPrefs(int difficulty)
     {
+        //Game preferences
+        CompareDifficulties(difficultyStrings[difficulty]);
         // Enemy preferences
         PlayerPrefs.SetInt("numberOfEnemies", 2);
         PlayerPrefs.SetFloat("minEnemySpeed", EnemySpeed * minSpeedScales[difficulty]);
@@ -67,5 +71,20 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("EActiveTime", EActiveTime);
         PlayerPrefs.SetFloat("RCooldown", RCooldown * playerCooldownScale[difficulty]);
         PlayerPrefs.SetFloat("RActiveTime", RActiveTime);
+        
+        PlayerPrefs.Save();
+    }
+
+    void CompareDifficulties(String difficulty)
+    {
+        String oldDifficulty = PlayerPrefs.GetString("Difficulty", difficulty);
+        // If difficulty is changed then reset death count
+        if (!oldDifficulty.Equals(difficulty))
+        {
+            PlayerPrefs.SetInt("DeathCount", 0);
+            
+        }
+        PlayerPrefs.SetString("Difficulty", difficulty);
+        PlayerPrefs.Save();
     }
 }
