@@ -1,5 +1,7 @@
 # Blind Monk Game
 A survival platformer game using the basic concepts of the C# and the Unity Engine.
+## Gameplay
+![Blink Monk Gameplay](https://i.ibb.co/4V1t36R/blind-monk-gameplay.gif)
 
 # Story
 An evil organisation is trying to wipe out all the monks. You are a novice monk with a hard task ahead. Avoid the mechanical spikes and turn the levers to stop the attack and protect the temple.
