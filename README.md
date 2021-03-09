@@ -1,5 +1,5 @@
 # Blind Monk Game
-A survival platformer game using the basic concepts of the C# and the Unity Engine.
+A rage game using the basic concepts of the C# and the Unity Engine.
 ## Gameplay
 ![Blink Monk Gameplay](https://i.ibb.co/4V1t36R/blind-monk-gameplay.gif)
 
